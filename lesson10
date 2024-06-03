@@ -1,0 +1,30 @@
+""" В ячейке ниже представлен код генерирующий DataFrame, которая состоит всего из 1 столбца.
+Ваша задача перевести его в one hot вид.
+Сможете ли вы это сделать без get_dummies? """
+
+
+# импортируем нужные библиотеки pandas
+import pandas as pd
+
+# ниже представлено часть кода с задания
+import random
+
+
+lst = ['robot'] * 10
+lst += ['human'] * 10
+random.shuffle(lst)
+
+data = pd.DataFrame({'whoAmI':lst})
+data.head()
+
+
+''' ниже представлено решение '''
+column_values = data['whoAmI'].unique()  # в данной части получаем уникальные значения столбца
+one_hot_view = pd.DataFrame()  # пустой DataFrame
+
+# создаем новый столбец заполняем его булевыми значениями ("0" или "1")
+for value in one_hot_view:
+    one_hot_view[value] = (data['whoAmI'] == value).astype(int)
+
+# выводим полученный результат
+print(one_hot_view)
