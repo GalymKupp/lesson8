@@ -1,0 +1,28 @@
+""" Дополнить справочник возможностью копирования данных из одного файла в другой.
+Пользователь вводит номер строки, которую необходимо перенести из одного файла в другой """
+
+''' для выполнения задачи указал примерные названия файлов откуда и куда сохранить '''
+
+def copy_line(download_from_file, save_to_file, number_of_the_line):
+	with open(download_from_file, 'r') as file:
+		line_number = file.readlines()
+
+	if number_of_the_line < 1 or number_of_the_line > len(line_number):
+		print('Некорректный номер строки')
+		return
+
+	with open(save_to_file, 'w') as file:
+		file.write(line_number[number_of_the_line - 1])
+
+	for i in range(len(line_number)):
+		if i != number_of_the_line - 1:
+			file.write(line_number[i])
+
+	print('копирование строки успешно выполнено')
+
+
+download_from_file = 'download_from_file.txt'  # файл из которого нужно скачать для переноса строки
+save_to_file = 'target.txt'  # файл в который нужно сохранить перенесенную строку
+number_of_the_line = int(input('Введите номер строки: '))  # ввести вручную номер строки, которую нужно перенести
+
+copy_line(download_from_file, save_to_file, number_of_the_line)
